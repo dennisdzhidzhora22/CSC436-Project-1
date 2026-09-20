@@ -13,14 +13,17 @@ body {
 .site-header { grid-area: head; padding: 1rem; background: #bbbbbb; border-radius: 1.5rem; 
     display: flex; justify-content: space-between; align-items: center;
 }
-.site-header ul { display: flex; list-style: none; gap: 1.5rem; }
+.site-header ul { display: flex; list-style: none; gap: 1.2rem; }
 .site-header a { text-decoration: none; }
-.site-main { grid-area: main; padding: 1rem; background: #dddddd; border-radius: 1.5rem; }
+.site-main { grid-area: main; padding: 1rem; background: #dddddd; border-radius: 1.5rem; 
+    display: grid; gap: 1rem; 
+}
 .site-footer { grid-area: foot; padding: 1rem; background: #bbbbbb; border-radius: 1.5rem; 
     text-align: center;
 }
 
-.site-left-sidebar { grid-area: l; background: #000000; color: white; border-radius: 5px; }
-.site-right-sidebar { grid-area: r; background: #000000; color: white; border-radius: 5px; }
+.site-left-sidebar { grid-area: l; background: #000000; color: white; border-radius: 1.5rem; }
+.site-right-sidebar { grid-area: r; background: #000000; color: white; border-radius: 1.5rem; }
 
 .steam-frame-img { width: 100%; display: block; border-radius: 0.5rem; }
+.text-article { background: #f8f8f8; border-radius: 0.5rem; padding: 1rem; box-sizing: border-box; }

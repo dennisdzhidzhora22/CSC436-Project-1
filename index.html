@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- TODO 1: give your page a real title -->
   <title>Steam Frame Info</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <!-- TODO 2: header with your site name and a nav containing at least 3 links -->
-  <header>
+  <header class="site-header">
     <h1>Steam Frame Info</h1>
     <nav>
       <ul>
@@ -21,12 +22,12 @@
 
   <!-- TODO 3: main with at least two sections about your theme -->
   <!-- Requirements: one h1 total, sensible heading levels, no skipped levels -->
-  <main>
-    <h1>Overview</h1>
+  <main class="site-main">
+
     <h2>What is it?</h2>
-    <h3>
+    <p>
       The Steam Frame is a new VR headset developed by Valve, the company behind Steam and many well-known game series such as Half-Life, Counter-Strike, and Portal.
-    </h3>
+    </p>
 
     <h2>Tech Specs</h2>
     <ul>
@@ -72,17 +73,18 @@
         </tr>
       </tbody>
     </table>
+
+    <div>
+      <img class="steam-frame-img" src="https://shared.fastly.steamstatic.com/store_item_assets/steam/subs/1629484/72e3f8f23b5c3a711a8098afd5c0bbe72ff9d69d/capsule_616x353_2x.jpg?t=1789493945" alt="Steam Frame headset and controllers">
+    </div>
   </main>
 
   <!-- TODO 4: include a list (ul or ol) with real content -->
   <!-- TODO 5: include an image with meaningful alt text -->
   <!-- TODO 6: include a link that goes somewhere real -->
-  <p>
-    <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/subs/1629484/72e3f8f23b5c3a711a8098afd5c0bbe72ff9d69d/capsule_616x353_2x.jpg?t=1789493945" alt="Steam Frame headset and controllers">
-  </p>
 
   <!-- TODO 7: footer with your name and the semester -->
-  <footer>
+  <footer class="site-footer">
     <p>Dennis Dzhidzhora - Fall 2026</p>
   </footer>
 </body>

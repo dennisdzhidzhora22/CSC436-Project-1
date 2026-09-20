@@ -10,9 +10,15 @@ body {
     gap: 1rem;
 }
 
-.site-header { grid-area: head; padding: 1rem; background: #bbbbbb; border-radius: 1.5rem; }
+.site-header { grid-area: head; padding: 1rem; background: #bbbbbb; border-radius: 1.5rem; 
+    display: flex; justify-content: space-between; align-items: center;
+}
+.site-header ul { display: flex; list-style: none; gap: 1.5rem; }
+.site-header a { text-decoration: none; }
 .site-main { grid-area: main; padding: 1rem; background: #dddddd; border-radius: 1.5rem; }
-.site-footer { grid-area: foot; padding: 1rem; background: #bbbbbb; border-radius: 1.5rem; }
+.site-footer { grid-area: foot; padding: 1rem; background: #bbbbbb; border-radius: 1.5rem; 
+    text-align: center;
+}
 
 .site-left-sidebar { grid-area: l; background: #000000; color: white; border-radius: 5px; }
 .site-right-sidebar { grid-area: r; background: #000000; color: white; border-radius: 5px; }

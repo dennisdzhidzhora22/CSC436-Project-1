@@ -3,25 +3,27 @@
 body {
     min-height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 6fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     grid-template-rows: auto 1fr auto;
     grid-template-areas:
         "head head head"
         "l main r"
         "foot foot foot";
     gap: 1rem;
+    background: #000000;
+    font-family: system-ui, sans-serif;
 }
 
 .site-header { grid-area: head; padding: 1rem; background: #bbbbbb; border-radius: 1.5rem; 
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; justify-content: space-between; align-items: center; background: #0a1c2f; color: #e0e0e0;
 }
 .site-header ul { display: flex; list-style: none; gap: 1.2rem; }
-.site-header a { text-decoration: none; }
-.site-main { grid-area: main; padding: 1rem; background: #dddddd; border-radius: 1.5rem; 
+.site-header a { text-decoration: none; color: #e0e0e0; }
+.site-main { grid-area: main; padding: 1rem; background: #1f2c38; border-radius: 1.5rem; 
     display: grid; gap: 1rem; min-width: 0;
 }
 .site-footer { grid-area: foot; padding: 1rem; background: #bbbbbb; border-radius: 1.5rem; 
-    text-align: center;
+    text-align: center; background: #0a1c2f; color: #e0e0e0; 
 }
 
 .site-left-sidebar { grid-area: l; background: #000000; color: white; border-radius: 1.5rem; 
@@ -32,6 +34,6 @@ body {
 }
 
 .text-article { background: #f8f8f8; border-radius: 0.5rem; padding: 1rem; 
-    overflow-x: auto; 
+    overflow-x: auto; background: #2b6386; color: #e0e0e0;
 }
 .steam-frame-img { width: 100%; display: block; border-radius: 0.5rem; }

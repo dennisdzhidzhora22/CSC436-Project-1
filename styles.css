@@ -25,6 +25,7 @@ body {
 }
 .site-header ul { display: flex; list-style: none; gap: 1.2rem; }
 .site-header a { text-decoration: none; color: #e0e0e0; }
+.site-header a:hover { text-decoration: underline; color: #3880ad; }
 .site-main { grid-area: main; padding: 1rem; background: #1f2c38; border-radius: 1.5rem; 
     display: grid; gap: 1rem; min-width: 0;
 }

@@ -42,4 +42,14 @@ body {
 .text-article { background: #f8f8f8; border-radius: 0.5rem; padding: 1rem; 
     overflow-x: auto; background: #2b6386; color: #e0e0e0;
 }
-.steam-frame-img { width: 100%; display: block; border-radius: 0.5rem; }
+
+.img-article { 
+    display: grid; 
+    grid-template-columns: 1fr 20fr 1fr;
+}
+.steam-frame-img { width: 100%; display: block; }
+button { background: #2b6386; color: #e0e0e0; border: transparent; }
+button:hover { background: #3880ad }
+button:active { background: #4baae5 }
+.left-btn { border-radius: 0.5rem 0 0 0.5rem; }
+.right-btn { border-radius: 0 0.5rem 0.5rem 0; }

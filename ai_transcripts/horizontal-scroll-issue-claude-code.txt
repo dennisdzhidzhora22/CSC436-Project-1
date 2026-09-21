@@ -1,0 +1,56 @@
+c:\Users\denni\repos\CSC436-Project-1\styles.css
+I'm having some issues where even with box-sizing: border-box, I get horizontal scroll on smaller-width screens. Also, there is an inconsistent distance to the left of all the elements vs to the right of all the elements. I don't have any explicit margins, and I just have 1rem gaps between everything, so I'm not sure what's causing this. How can I fix these issues? Do not make any changes, just explain the cause for these issues and show me how to fix them.
+Show less
+Read c:\Users\denni\repos\CSC436-Project-1\styles.css
+@index.html  @styles.css
+Both symptoms trace back to the same two root causes.
+
+1. Horizontal scroll on narrow screens
+The culprit is the comparison table in index.html:50-83. It has 5 columns, and HTML tables (table-layout: auto, the default) will not shrink narrower than the minimum content width of their widest unbreakable cell content. On a narrow viewport, that minimum width is wider than the space the 6fr main column actually has.
+
+Normally you'd expect the grid track to just squeeze the table down — but it can't, because of a well-known CSS Grid/Flexbox gotcha: grid and flex items have an implicit min-width: auto, not min-width: 0. This means .site-main (styles.css:18) and the <article> containing the table refuse to shrink below the table's intrinsic minimum size, so instead of the table shrinking, the whole grid (and body) grows wider than the viewport → horizontal scroll.
+
+box-sizing: border-box (used on .text-article, styles.css:29) doesn't help here — it only affects how padding/border are added to a given width, it doesn't change minimum content sizing.
+
+Fix — let the grid items shrink, and let the table scroll internally instead of blowing out the page:
+
+
+.site-main,
+.site-left-sidebar,
+.site-right-sidebar {
+    min-width: 0;   /* allow grid items to shrink below content's intrinsic width */
+}
+
+.text-article {
+    overflow-x: auto;   /* table scrolls inside its own card on narrow screens */
+}
+(Optionally wrap the <table> in a <div class="table-scroll"> with overflow-x: auto if you don't want the whole article card to scroll, just the table.)
+
+2. Inconsistent left vs. right spacing
+There's no CSS reset in your stylesheet — no body { margin: 0; } and no * { margin: 0; padding: 0; }. That means the browser's default UA stylesheet margin (8px on <body>) is still active. Symmetric margin alone wouldn't look inconsistent, but combined with issue #1 it does: since the page is wider than the viewport and horizontal scroll starts at position 0, what you're seeing on the left is the real 8px body margin, while what you're seeing on the right is just wherever the overflowing content happens to get cut off by the window edge — not the actual margin. That's why left and right look different.
+
+Fix — add a standard reset at the top of styles.css:
+
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+Once you fix the overflow in #1, body's actual rendered width will match the viewport, and with margin: 0 the left/right spacing (driven purely by your grid's 1fr sidebar columns) will be symmetric.
+
+Order to apply them: fix the overflow first, then add the reset — otherwise the reset alone won't make the asymmetry disappear, since the real problem is the page being wider than the window.
+
+
+c:\Users\denni\repos\CSC436-Project-1\styles.css
+Why do you suggest applying box-sizing: border-box on everything?
+
+Also, it seems the inconsistent spacing was fixed with just the addition of min-width: 0 and overflow-x: auto. Should I still apply margin: 0 and the other thing like you suggest?
+Show more
+Box-sizing: border-box — it wasn't actually needed to fix either of your two bugs (those were pure grid/overflow issues). I included it as a general best-practice reset, since it's usually recommended alongside a margin reset. What it does: normally (content-box), width only sets the content area, and any padding/border you add gets added on top, making the actual rendered box bigger than the width you specified — this frequently causes unexpected overflow once you mix percentage/fr-based widths with padding. border-box makes width include padding and border, so the box stays the size you declared. It's cheap insurance for later, not something you're missing right now.
+
+Margin: 0 — you're right, it's not needed anymore. The asymmetry was a symptom of the horizontal overflow (you were seeing the real 8px left margin but a clipped right edge). Once min-width: 0 + overflow-x: auto fixed the overflow, body shrank back to the actual viewport width, so the default 8px margin is now applied symmetrically on both sides — that's why it looks fixed already.
+
+Adding margin: 0 at this point is purely stylistic (it removes that uniform 8px breathing room around the whole page for an edge-to-edge look) — not a correctness fix. Up to you whether you want that look.
